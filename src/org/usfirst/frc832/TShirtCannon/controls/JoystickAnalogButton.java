@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.usfirst.frc832.TShirtCannon.controls;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -28,7 +23,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
  * look pressed. So plan your controls accordingly.
  * 
  * @author James@team2168.org
- *
+ * Thanks for posting this James! Would be lost without it. Banks, FRC 832
  */
 public class JoystickAnalogButton extends Button {
 

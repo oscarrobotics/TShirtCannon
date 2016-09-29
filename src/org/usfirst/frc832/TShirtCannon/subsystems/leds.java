@@ -6,7 +6,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class leds extends Subsystem {
     I2C i2c;
     byte[] toSend = new byte[1];
-     
+    
+    /* List of i2c bytes and what LED effect they have
+    30 - Off
+    50 - Green
+    72 - Rainbow
+    74 - Bouncing red with trail
+    76 - Green base with bouncing blue dot
+    */
+    
     public void initDefaultCommand() {
     }
     

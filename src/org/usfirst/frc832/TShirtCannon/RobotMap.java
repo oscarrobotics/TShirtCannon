@@ -13,7 +13,7 @@ public class RobotMap {
     public static Relay cannonLight;
     public static Compressor pneumaticscompressors;
     public static DoubleSolenoid anglePiston;
-    public static Solenoid anglePistonRelease;
+    public static Solenoid anglePistonOpen;
     public static Solenoid fillCannon;
     public static SpeedController driveTrainleft1;
     public static SpeedController driveTrainright1;
@@ -23,7 +23,7 @@ public class RobotMap {
 	cannonLight = new Relay(1, 2);
 	pneumaticscompressors = new Compressor(1, 1, 1, 4);
 	anglePiston = new DoubleSolenoid(1, 1, 2);      
-	anglePistonRelease = new Solenoid(1, 3);
+	anglePistonOpen = new Solenoid(1, 3);
         fillCannon = new Solenoid(1, 4);
 	
         driveTrainleft1 = new Talon(1, 1);
