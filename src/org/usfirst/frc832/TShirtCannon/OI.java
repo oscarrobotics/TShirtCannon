@@ -101,8 +101,7 @@ public class OI {
         
         
         // Command mappings for Control Stick
-        stickTrigger.whileHeld(new fireCannon()); // Hold Fire valve open while trigger held
-        thumbButton.whileHeld(new light()); // Run warning light while button held
+        thumbButton.whileHeld(new cannonControl()); // Run warning light while button held
         button3.whenReleased(new fillToPSI()); // Run compressors to setpoint once button pressed
         POVup.whileHeld(new angleUp()); // Angle the cannon up while button held
         POVdown.whileHeld(new angleDown()); // Angle the cannon down while button held

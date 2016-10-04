@@ -15,9 +15,7 @@ public class Robot extends IterativeRobot {
     
     Command autonomousCommand;
     public static OI oi;
-    public static cannonFire cannonFire;
-    public static cannonComp cannonComp;
-    public static cannonLight cannonLight;
+    public static cannonControl cannonControl;
     public static pneumatics pneumatics;
     public static anglePiston anglePiston;
     public static leds leds;
@@ -27,9 +25,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 	RobotMap.init();
         
-        cannonFire = new cannonFire();
-        cannonComp = new cannonComp();
-        cannonLight = new cannonLight();
+        cannonControl = new cannonControl();
         pneumatics = new pneumatics();
         anglePiston = new anglePiston();
         leds = new leds();
@@ -44,7 +40,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putString("Sensor Status:", Robot.i2cPSI.status);
         SmartDashboard.putNumber("Joystick Twist", Robot.oi.controlStick.getTwist());
         SmartDashboard.putNumber("Joystick Throttle", Robot.oi.controlStick.getThrottle());
-        SmartDashboard.putNumber("PSI Setpoint", Robot.cannonComp.throttleToPSI());
+        SmartDashboard.putNumber("PSI Setpoint", Robot.pneumatics.throttleToPSI());
     }
     
     public void teleopInit() {
