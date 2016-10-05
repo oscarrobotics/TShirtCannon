@@ -1,6 +1,7 @@
 package org.usfirst.frc832.TShirtCannon;
     
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.visa.VisaException;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -21,7 +22,7 @@ public class RobotMap {
     public static void init() {
         cannonFire = new Relay(1, 1);        
 	cannonLight = new Relay(1, 2);
-	pneumaticscompressors = new Compressor(1, 1, 1, 4);
+	pneumaticscompressors = new Compressor(1, 1, 1, 3);
 	anglePiston = new DoubleSolenoid(1, 1, 2);      
 	anglePistonOpen = new Solenoid(1, 3);
         fillCannon = new Solenoid(1, 4);
@@ -33,5 +34,7 @@ public class RobotMap {
         driveTraintank.setExpiration(0.1);
         driveTraintank.setSensitivity(0.5);
         driveTraintank.setMaxOutput(1.0);  
+
+        pneumaticscompressors.start();
     }
 }

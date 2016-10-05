@@ -3,7 +3,7 @@ import org.usfirst.frc832.TShirtCannon.RobotMap;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class cannonControl extends Subsystem {
+public class cannonControlSub extends Subsystem {
     Relay fire = RobotMap.cannonFire;
     Relay light = RobotMap.cannonLight;
     

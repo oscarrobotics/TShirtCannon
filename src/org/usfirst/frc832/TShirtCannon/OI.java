@@ -3,6 +3,7 @@ import org.usfirst.frc832.TShirtCannon.commands.*;
 import org.usfirst.frc832.TShirtCannon.controls.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.*;
+import edu.wpi.first.wpilibj.command.Command;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -98,8 +99,6 @@ public class OI {
         button12 = new JoystickButton(controlStick, 12); // 
         hatSwitch = new POVHat(controlStick);
         */
-        
-        
         // Command mappings for Control Stick
         thumbButton.whileHeld(new cannonControl()); // Run warning light while button held
         button3.whenReleased(new fillToPSI()); // Run compressors to setpoint once button pressed
