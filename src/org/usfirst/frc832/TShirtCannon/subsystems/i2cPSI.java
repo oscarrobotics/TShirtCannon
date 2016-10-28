@@ -3,37 +3,39 @@ package org.usfirst.frc832.TShirtCannon.subsystems;
 import edu.wpi.first.wpilibj.DigitalModule;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.I2C;
-import org.usfirst.frc832.TShirtCannon.commands.getSensorData;
-public class i2cPSI extends Subsystem{
+import org.usfirst.frc832.TShirtCannon.commands.*;
+import java.util.Timer;
+import java.util.TimerTask;
+public class i2cPSI extends Subsystem {
     
-    private static final I2C I2C = DigitalModule.getInstance(1).getI2C(4); // Sets I2C Address to 4 ( which is 2, bit-shifted left by 1)
-    public static byte dataReceived[] = {0, 0};    // Holds all of the data from your Arduino
+    //private static I2C I2C = DigitalModule.getInstance(1).getI2C(40); // Sets I2C Address to 4 ( which is 2, bit-shifted left by 1)
+    public static byte dataReceived[] = {0, 0, 0, 0};    // Holds all of the data from your Arduino
     public static final boolean isCompatMode = false;
     public static double psiActual, tempActual;
+    Timer timer;
+    TimerTask timerTask;
+    
     public void initDefaultCommand() {
-        //setDefaultCommand(new getI2CData()); // Sets getI2CData ro run when robot is initialized
-        setDefaultCommand(new getSensorData());
+        //setDefaultCommand(new getSensorData());
     }
+    //*
     
     public static void getFromArduino() {
-        System.out.println("I2C Compatability Mode = " + isCompatMode);
-        I2C.setCompatabilityMode(isCompatMode);
-        System.out.println("I2C Read Start");
-        I2C.read(0, 3, dataReceived);
-        System.out.println("I2C Read Finish");
-        System.out.println("I2C Data printing");
+        //System.out.println("hello world");
+        I2C i2c = DigitalModule.getInstance(1).getI2C(40);
+        i2c.setCompatabilityMode(isCompatMode);
+        i2c.read(0, 1, dataReceived);
         System.out.println("PSI: " + (int)dataReceived[0]);
-        System.out.print("\t");      
-        System.out.println("Temp: " + (int)dataReceived[1]);  
         psiActual = dataReceived[0];
-        tempActual = dataReceived[1];
     }
+    
+    //*/
     
     /* Mega block of all old I2C code
     
     
-    public static final int minRaw = 0; // Min value of your sensor
-    public static final int maxRaw = 16383; // Max value of your sensor
+    public static final int minRaw = 2906; // Min value of your sensor
+    public static final int maxRaw = 16000; // Max value of your sensor
     public static final int minPSI = 0; // Min PSI of your sensor
     public static final int maxPSI = 150; // Max PSI of your sensor
     public static double psiValue, tempValue;
@@ -66,7 +68,7 @@ public class i2cPSI extends Subsystem{
         System.out.println("parseInt: " + psiCounts);
         psiActual = (1.0 * (((psiCounts - minRaw) * (maxPSI - minPSI)) / (maxRaw - minRaw)) + minPSI); // Calculates PSI based on equation in datasheet
         System.out.println("outputValue" + psiActual);
-        psiActual = psiActual - 26;
+        //psiActual = psiActual - 26;
         return psiActual; // Final PSI value
     }
     public static double TempData() { // Get Temperature from Honeywell HSC Sensor. Returns an 11 bit temperature value in degC

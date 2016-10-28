@@ -52,21 +52,24 @@ public class OI {
     public final JoystickButton thumbButton; // Thumb Button on side of stick, map to 2
     public final JoystickButton button3; // Button 3 on bottom left of stick face, map to 3
     public final JoystickButton button4; // Button 4 on bottom right of stick face, map to 4
+    public final JoystickButton button8; // Button 8 on top right of base side, map to 8
+    public final JoystickButton button10; // Button 10 on middle right of base side, map to 10
+    public final JoystickButton button12; // Button 12 on bottom right of base side, map to 12
     public final JoystickAnalogButton POVup;
     public final JoystickAnalogButton POVdown;
     public final JoystickAnalogButton POVleft;
     public final JoystickAnalogButton POVright;
     
     /* Block of currently unused buttons; remove from block as needed
-    public JoystickButton button5; // Button 5 on top left of stick face, map to 5
-    public JoystickButton button6; // Button 6 on top right of stick face, map to 6
-    public JoystickButton button7; // Button 7 on top left of base side, map to 7
-    public JoystickButton button8; // Button 8 on top right of base side, map to 8
-    public JoystickButton button9; // Button 9 on middle left of base side, map to 9
-    public JoystickButton button10; // Button 10 on middle right of base side, map to 10
-    public JoystickButton button11; // Button 11 on bottom left of base side, map to 11
-    public JoystickButton button12; // Button 12 on bottom right of base side, map to 12
-    // The POV Hat, twist, and throttle are all mapped to axis (need to get axis numbers for there)
+    public final JoystickButton button5; // Button 5 on top left of stick face, map to 5
+    public final JoystickButton button6; // Button 6 on top right of stick face, map to 6
+    public final JoystickButton button7; // Button 7 on top left of base side, map to 7
+    
+    public final JoystickButton button9; // Button 9 on middle left of base side, map to 9
+   
+    public final JoystickButton button11; // Button 11 on bottom left of base side, map to 11
+   
+    // The POV Hat, twist, and throttle are all mapped to axis (need to get axis numbers for those)
     */
     
     public OI() {
@@ -77,33 +80,37 @@ public class OI {
         controlStick = new Joystick(2); // Logitech Extreme 3D Pro ONLY
         // Button Mappings for Control Stick
         
-        POVup = new JoystickAnalogButton(controlStick, 5, 1.0); // POV Hat Up
-        POVdown = new JoystickAnalogButton(controlStick, 5, -1.0); // POV Hat Down
-        POVleft = new JoystickAnalogButton(controlStick, 6, 1.0); // POV Hat Left
-        POVright = new JoystickAnalogButton(controlStick, 6, -1.0); // POV Hat Right
+        POVup = new JoystickAnalogButton(controlStick, 5); // POV Hat Up
+        POVdown = new JoystickAnalogButton(controlStick, 5); // POV Hat Down
+        POVleft = new JoystickAnalogButton(controlStick, 6); // POV Hat Left
+        POVright = new JoystickAnalogButton(controlStick, 6); // POV Hat Right
         stickTrigger = new JoystickButton(controlStick, 1); // Trigger on back of stick
         thumbButton = new JoystickButton(controlStick, 2); // Thumb Button on side of stick
         button3 = new JoystickButton(controlStick, 3); // Button 3 on bottom left of stick face
         button4 = new JoystickButton(controlStick, 4); // Button 4 on bottom right of stick face
-        
-        
+        button8 = new JoystickButton(controlStick, 8); // Button 8 on top right of base side
+        button10 = new JoystickButton(controlStick, 10); // Button 10 on middle right of base side 
+        button12 = new JoystickButton(controlStick, 12); // 
         
         /* Block of currently unused buttons; remove from block as needed
         button5 = new JoystickButton(controlStick, 5); // Button 5 on top left of stick face
         button6 = new JoystickButton(controlStick, 6); // Button 6 on top right of stick face
         button7 = new JoystickButton(controlStick, 7); // Button 7 on top left of base side
-        button8 = new JoystickButton(controlStick, 8); // Button 8 on top right of base side
+       
         button9 = new JoystickButton(controlStick, 9); // Button 9 on middle left of base side 
-        button10 = new JoystickButton(controlStick, 10); // 
+        
         button11 = new JoystickButton(controlStick, 11); // 
-        button12 = new JoystickButton(controlStick, 12); // 
+        
         hatSwitch = new POVHat(controlStick);
         */
         // Command mappings for Control Stick
         thumbButton.whileHeld(new cannonControl()); // Run warning light while button held
         button3.whenReleased(new fillToPSI()); // Run compressors to setpoint once button pressed
-        POVup.whileHeld(new angleUp()); // Angle the cannon up while button held
-        POVdown.whileHeld(new angleDown()); // Angle the cannon down while button held
+        button8.whileHeld(new angleUp());
+        button10.whileHeld(new angleDown());
+        button12.whileHeld(new angleRelease());
+        //POVup.whileHeld(new angleUp()); // Angle the cannon up while button held
+        //POVdown.whileHeld(new angleDown()); // Angle the cannon down while button held
     }
     
     public Joystick getdriverPad() {

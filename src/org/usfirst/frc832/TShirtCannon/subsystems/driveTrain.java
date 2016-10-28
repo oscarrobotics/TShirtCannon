@@ -23,10 +23,10 @@ public class driveTrain extends Subsystem {
     
     public void twistToDrive(double twistVal) {
         double outputLeft, outputRight;
-        if(Math.abs(twistVal) >= 0.09) { // Makes sure the stick is being twisted before running
-            if (Math.abs(twistVal) > 0.09) { // Set a deadzone to ignore input between -0.09 and 0.09
-               outputLeft = twistVal * -1.0; // Force left to be negative
-               outputRight = twistVal * 1.0; // Force right to be positive
+        if(Math.abs(twistVal) >= 0.05) { // Makes sure the stick is being twisted before running
+            if (Math.abs(twistVal) > 0.05) { // Set a deadzone to ignore input between -0.09 and 0.09
+               outputLeft = -Math.abs(twistVal); // Force left to be negative
+               outputRight = Math.abs(twistVal); // Force right to be positive
             } 
             else { // If we aren't outside of the deadzone, do nothing
                 outputLeft = 0.0; // Do nothing

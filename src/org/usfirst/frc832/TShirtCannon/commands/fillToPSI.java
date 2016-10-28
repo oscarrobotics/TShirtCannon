@@ -20,7 +20,8 @@ public class fillToPSI extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.pneumatics.isDone; // Do we need this? We'll see...
+        //return Robot.pneumatics.isDone; // Do we need this? We'll see...
+        return false;
     }
 
     // Called once after isFinished returns true

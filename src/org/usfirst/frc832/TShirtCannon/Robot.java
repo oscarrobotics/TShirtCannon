@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc832.TShirtCannon.subsystems.*;
+import org.usfirst.frc832.TShirtCannon.controls.*;
+import java.lang.Thread;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -36,18 +38,29 @@ public class Robot extends IterativeRobot {
     
     public void sendData() {
         //Robot.i2cPSI.getData();
-        SmartDashboard.putNumber("PSI:", Robot.i2cPSI.psiActual);
-        SmartDashboard.putNumber("AirTemp degC:", Robot.i2cPSI.tempActual);
+        //SmartDashboard.putNumber("PSI:", Robot.i2cPSI.psiActual);
+        //SmartDashboard.putNumber("AirTemp degC:", Robot.i2cPSI.tempActual);
         //SmartDashboard.putString("Sensor Status:", Robot.i2cPSI.status);
         SmartDashboard.putNumber("Joystick Twist", Robot.oi.controlStick.getTwist());
         SmartDashboard.putNumber("Joystick Throttle", Robot.oi.controlStick.getThrottle());
         SmartDashboard.putNumber("PSI Setpoint", Robot.pneumatics.throttleToPSI());
+        SmartDashboard.putNumber("Axis 5", Robot.oi.controlStick.getRawAxis(5));
+        SmartDashboard.putNumber("Axis 6", Robot.oi.controlStick.getRawAxis(6));
     }
     
     public void teleopInit() {
         Robot.i2cLEDs.setLEDs((byte)50); // Sets LEDs to Green once when enabled
+        //psiThread p = new psiThread(0.5);
+        //p.run();
     }
     public void teleopPeriodic() {
+        //psiThread p = new psiThread(0.5);
+        //if (p.isAlive()) {
+            //System.out.println(" is GUD");
+        //}
+        //System.out.println("hello world");
+        //Robot.i2cPSI.getFromArduino();
+       
         Scheduler.getInstance().run();
         sendData();
     }

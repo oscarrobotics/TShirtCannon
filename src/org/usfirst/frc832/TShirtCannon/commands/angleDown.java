@@ -1,6 +1,8 @@
 package org.usfirst.frc832.TShirtCannon.commands;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc832.TShirtCannon.Robot;
+import org.usfirst.frc832.TShirtCannon.RobotMap;
 
 public class  angleDown extends Command {
     public angleDown() {
@@ -11,7 +13,7 @@ public class  angleDown extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.anglePiston.angleMode(2);
+        RobotMap.anglePiston.set(DoubleSolenoid.Value.kReverse);
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -19,7 +21,7 @@ public class  angleDown extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.anglePiston.angleMode(0);
+         RobotMap.anglePiston.set(DoubleSolenoid.Value.kOff);
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

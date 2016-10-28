@@ -35,16 +35,16 @@ public class pneumatics extends Subsystem {
     }
 
     public void runToPSI() {
-        isDone = false; // May not be needed
-        double setpoint = throttleToPSI(); // gets setpoint
-        final double heldsetpoint = setpoint; // holds setpoint
+        //isDone = false; // May not be needed
+        final double heldsetpoint = throttleToPSI(); // holds setpoint
         double actualPSI = i2cPSI.psiActual;
+        System.out.println("debug1");
         while (!((Math.abs(actualPSI - heldsetpoint) <= 2) || actualPSI >= heldsetpoint)) { // while not at (setpoint +- 2 or above setpoint)
             RobotMap.fillCannon.set(true); // Open fill solenoid 
             if ((Math.abs(actualPSI - heldsetpoint) <= 2) || actualPSI >= heldsetpoint) { // Once at (setpoint +- 2 or above setpoint)
                 RobotMap.fillCannon.set(false); // Close fill solenoid
                 Robot.i2cLEDs.setLEDs((byte) 72); // Indicate completion by playing Rainbow sequence
-                isDone = true; // May not be needed
+                //isDone = true; // May not be needed
             }
         }
     }

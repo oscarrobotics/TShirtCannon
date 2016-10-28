@@ -4,19 +4,8 @@ import edu.wpi.first.wpilibj.DigitalModule;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class i2cLEDs extends Subsystem {
-    I2C i2c;
-    byte[] toSend = new byte[1];
-    
-    /* List of i2c bytes and what LED effect they have
-    30 - Off
-    50 - Green
-    72 - Rainbow
-    74 - Bouncing red with trail
-    76 - Green base with bouncing blue dot
-    */
-    
-    public void initDefaultCommand() {
-    }
+
+    public void initDefaultCommand() { }
     
     /**
      * 
@@ -28,7 +17,8 @@ public class i2cLEDs extends Subsystem {
      * 76 - Green base with bouncing blue dot
      */
     public void setLEDs(byte i) { //Function for sending I2C commands to Arduino
-        i2c = DigitalModule.getInstance(1).getI2C(168); // Sets I2C address to send to as "168", which is "84" bit-shifted by one
+        I2C i2c = DigitalModule.getInstance(1).getI2C(168); // Sets I2C address to send to as "168", which is "84" bit-shifted by one
+        byte[] toSend = new byte[1];
         toSend[0] = i; // sets toSend as paramater "byte"
         i2c.transaction(toSend, 1, null, 0);
     } 

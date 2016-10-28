@@ -11,7 +11,8 @@ public class  getSensorData extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.i2cPSI.getFromArduino();
+        //Robot.i2cPSI.getFromArduino();
+        //Robot.i2cPSI.getData();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
